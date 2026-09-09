@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IAS Fotografía y Filmaciones: bodas, 15 años, cumpleaños, bautizos, sesiones, fiestas patronales, contenido empresarial y dron en Oruro, Bolivia.">
+  <title>IAS Fotografía y Filmaciones | Oruro</title>
+  <link rel="icon" href="assets/logo-ias.webp">
+  <style>
+    :root {
+      --verde: #071c1a;
+      --verde-2: #0d302a;
+      --verde-3: #17473e;
+      --dorado: #e5b45a;
+      --dorado-claro: #f3cd7f;
+      --crema: #f4efe5;
+      --blanco: #fffaf0;
+      --texto-suave: #b7c4bf;
+      --oscuro: #14231f;
+      --radio: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--verde); color: var(--blanco); font-family: "Segoe UI", Arial, sans-serif; overflow-x: hidden; }
+    body.modal-abierto { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .cabecera {
+      position: fixed; inset: 0 0 auto; z-index: 50; height: 78px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      padding: 0 max(4vw, 22px); background: rgba(5, 25, 22, .86);
+      border-bottom: 1px solid rgba(229, 180, 90, .18); backdrop-filter: blur(18px);
+    }
+    .marca { display: inline-flex; align-items: center; gap: 12px; width: max-content; }
+    .marca img { width: 47px; height: 47px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(229, 180, 90, .4); }
+    .marca span { display: grid; }
+    .marca strong { color: var(--dorado); letter-spacing: .14em; }
+    .marca small { font-size: .69rem; }
+    .navegacion { display: flex; align-items: center; gap: 28px; color: #ddd9ce; font-size: .9rem; }
+    .navegacion a { padding: 10px 0; border-bottom: 1px solid transparent; }
+    .navegacion a:hover { color: var(--dorado-claro); border-color: var(--dorado); }
+    .boton-cotizar { justify-self: end; padding: 11px 18px; border: 1px solid rgba(229,180,90,.6); border-radius: 999px; color: var(--dorado-claro); font-weight: 800; }
+    .boton-menu { display: none; justify-self: end; width: 44px; height: 44px; border: 1px solid rgba(229,180,90,.3); border-radius: 50%; background: transparent; font-size: 1.35rem; }
+
+    .hero {
+      min-height: 790px; display: grid; grid-template-columns: 1.05fr .95fr;
+      align-items: center; gap: 7vw; position: relative; overflow: hidden;
+      padding: 135px max(6vw, 25px) 85px;
+      background: radial-gradient(circle at 72% 35%, rgba(211,154,66,.18), transparent 27%), radial-gradient(circle at 12% 92%, rgba(35,108,91,.34), transparent 32%), var(--verde);
+    }
+    .hero::before { content: ""; position: absolute; inset: 0; opacity: .07; background-image: linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to right, black, transparent 65%); }
+    .hero-contenido, .hero-imagen { position: relative; z-index: 1; }
+    .etiqueta { margin: 0 0 15px; color: var(--dorado); text-transform: uppercase; letter-spacing: .16em; font-size: .77rem; font-weight: 900; }
+    h1, h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.045em; }
+    h1 { max-width: 700px; font-size: clamp(4rem, 7.2vw, 7.2rem); line-height: .91; }
+    h1 em { color: var(--dorado); font-weight: 400; }
+    .hero-texto { max-width: 650px; margin: 27px 0 0; color: #d1cec5; font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.7; }
+    .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
+    .boton { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 22px; border: 0; border-radius: 999px; font-weight: 900; cursor: pointer; transition: transform .2s, background .2s; }
+    .boton:hover { transform: translateY(-2px); }
+    .boton-dorado { color: #08211c; background: linear-gradient(135deg, var(--dorado-claro), #c88d30); box-shadow: 0 15px 35px rgba(202,143,43,.2); }
+    .boton-borde { border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
+    .datos-hero { display: flex; gap: 28px; margin-top: 40px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.11); color: #9eb0aa; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .datos-hero span { display: grid; gap: 3px; }
+    .datos-hero strong { color: var(--blanco); font-size: 1rem; }
+    .hero-imagen { min-height: 620px; display: grid; place-items: center; }
+    .marco-hero { width: min(430px, 80%); height: 585px; padding: 10px; overflow: hidden; transform: rotate(2.6deg); border: 1px solid rgba(237,192,105,.36); border-radius: 220px 220px 28px 28px; background: rgba(255,255,255,.04); box-shadow: 0 35px 80px rgba(0,0,0,.38); }
+    .marco-hero img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+    .nota-flotante { position: absolute; left: 2%; bottom: 48px; padding: 13px 18px; border: 1px solid rgba(235,193,109,.28); border-radius: 15px; background: rgba(8,32,28,.9); box-shadow: 0 18px 38px rgba(0,0,0,.3); }
+    .nota-flotante strong, .nota-flotante small { display: block; }
+    .nota-flotante strong { color: white; }
+    .nota-flotante small { color: #9eb0aa; }
+
+    .seccion { padding: 102px max(6vw, 25px); }
+    .servicios { color: var(--oscuro); background: var(--crema); }
+    .encabezado-seccion { max-width: 1400px; margin: 0 auto 40px; display: grid; grid-template-columns: 1fr minmax(280px, 470px); align-items: end; gap: 40px; }
+    .encabezado-seccion h2 { font-size: clamp(2.7rem, 5vw, 5.2rem); line-height: .98; }
+    .encabezado-seccion > p { margin: 0; color: #63716d; line-height: 1.65; }
+    .servicios .etiqueta, .trabajos .etiqueta { color: #050300; }
+    .filtros { max-width: 1400px; margin: 0 auto 30px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .filtros button { padding: 10px 18px; border: 1px solid rgba(20,34,31,.18); border-radius: 999px; background: transparent; color: #4b5955; cursor: pointer; }
+    .filtros button.activo { color: white; border-color: var(--verde-2); background: var(--verde-2); }
+    .cuadricula-servicios { max-width: 1400px; margin: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .tarjeta-servicio { position: relative; min-height: 430px; padding: 0; overflow: hidden; isolation: isolate; text-align: left; border: 0; border-radius: var(--radio); background: var(--verde-2); cursor: pointer; box-shadow: 0 14px 36px rgba(32,43,39,.1); }
+    .tarjeta-servicio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .55s; }
+    .tarjeta-servicio::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(4,19,17,.97), rgba(4,19,17,.08) 70%); }
+    .tarjeta-servicio:hover img { transform: scale(1.045); }
+    .info-servicio { position: absolute; z-index: 2; inset: auto 0 0; display: grid; padding: 26px; color: white; }
+    .categoria { color: var(--dorado-claro); text-transform: uppercase; letter-spacing: .14em; font-size: .7rem; font-weight: 900; }
+    .titulo-servicio { margin-top: 6px; font-family: Georgia, serif; font-size: 2rem; }
+    .pie-servicio { display: flex; justify-content: space-between; align-items: end; margin-top: 31px; color: #cdd8d4; font-size: .82rem; }
+    .pie-servicio span:first-child { display: grid; }
+    .pie-servicio strong { color: white; font-size: 1.14rem; }
+    .flecha { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; font-size: 1.2rem; }
+
+    .franja { min-height: 630px; display: grid; grid-template-columns: 1fr 1fr; background: #0c2c27; }
+    .franja-imagen { position: relative; min-height: 630px; overflow: hidden; }
+    .franja-imagen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, transparent 50%, #0c2c27 100%); }
+    .franja-imagen img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+    .calidad { position: absolute; z-index: 2; left: 34px; bottom: 34px; padding: 12px 17px; border-radius: 999px; color: #0b2923; background: var(--dorado-claro); font-weight: 900; }
+    .franja-texto { align-self: center; padding: 75px max(7vw, 42px); }
+    .franja-texto h2 { max-width: 620px; font-size: clamp(2.8rem, 4.6vw, 5rem); line-height: 1.02; }
+    .franja-texto p { color: #b8c4c0; font-size: 1.05rem; line-height: 1.75; }
+    .franja-texto a { display: inline-block; margin-top: 14px; color: var(--dorado-claro); font-weight: 900; }
+
+    .cabina { display: grid; grid-template-columns: minmax(290px,.9fr) 1.1fr; align-items: center; gap: 7vw; background: radial-gradient(circle at 12% 20%, rgba(229,180,90,.14), transparent 30%), #071c1a; }
+    .cabina-visual { max-width: 720px; aspect-ratio: 4 / 3; position: relative; overflow: hidden; border: 1px solid rgba(229,180,90,.34); border-radius: 30px; box-shadow: 0 30px 70px rgba(0,0,0,.36); }
+    .cabina-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .cabina-visual::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 80px rgba(0,0,0,.2); pointer-events: none; }
+    .cabina-contenido h2 { max-width: 680px; font-size: clamp(3rem,5.4vw,6rem); line-height: .94; }
+    .cabina-contenido > p:not(.etiqueta) { max-width: 690px; color: #b8c5c0; font-size: 1.05rem; line-height: 1.75; }
+    .cabina-beneficios { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 28px 0 6px; }
+    .cabina-beneficios span { min-height: 64px; display: flex; align-items: center; gap: 11px; padding: 13px 15px; border: 1px solid rgba(229,180,90,.18); border-radius: 16px; color: #d9e1de; background: rgba(255,255,255,.035); font-weight: 700; }
+    .cabina-beneficios span::before { content: "✦"; color: var(--dorado-claro); }
+
+    .entregables { background: #09221f; }
+    .entregables .encabezado-seccion > p { color: #a9b6b1; }
+    .cuadricula-entregables { max-width: 1400px; margin: auto; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+    .entregable { overflow: hidden; border: 1px solid rgba(228,184,95,.18); border-radius: 24px; background: rgba(255,255,255,.035); box-shadow: 0 18px 44px rgba(0,0,0,.13); }
+    .entregable-media { height: 340px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; overflow: hidden; background: #041411; }
+    .entregable-media img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform .5s ease, filter .2s ease; }
+    .entregable-media img:hover { filter: brightness(1.08); }
+    .entregable-media img:focus-visible { outline: 3px solid var(--dorado-claro); outline-offset: -5px; }
+    .entregable:hover .entregable-media img { transform: scale(1.025); }
+    .entregable-cuerpo { position: relative; padding: 27px; }
+    .numero { position: absolute; top: 28px; right: 27px; color: #75918a; font-weight: 900; }
+    .entregable h3 { margin: 0 60px 10px 0; font-family: Georgia, serif; font-size: 1.75rem; font-weight: 500; }
+    .entregable p { margin: 0; color: #aab9b4; line-height: 1.65; font-size: .95rem; }
+
+    .trabajos { display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 7vw; color: var(--oscuro); background: var(--crema); }
+    .trabajos h2 { max-width: 820px; font-size: clamp(3rem,5.4vw,6rem); line-height: .95; }
+    .trabajos p:not(.etiqueta) { max-width: 720px; color: #5b6a65; font-size: 1.05rem; line-height: 1.72; }
+    .trabajos-panel { min-height: 360px; display: grid; align-content: center; justify-items: center; padding: 44px; text-align: center; border: 1px solid rgba(24,55,49,.13); border-radius: 30px; background: #fffdf8; box-shadow: 0 28px 70px rgba(22,44,39,.1); }
+    .trabajos-icono { width: 96px; height: 96px; display: grid; place-items: center; margin-bottom: 22px; border-radius: 50%; color: var(--dorado-claro); background: var(--verde-2); font-size: 2.4rem; }
+    .trabajos-panel strong { max-width: 360px; margin-bottom: 20px; font-family: Georgia,serif; font-size: 1.65rem; font-weight: 500; }
+
+    .contacto { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: end; color: #0b2a24; background: linear-gradient(130deg, #d7a448, #efc879); }
+    .contacto h2 { font-size: clamp(3.2rem, 6vw, 6.7rem); line-height: .92; }
+    .contacto p { max-width: 610px; font-size: 1.07rem; line-height: 1.65; }
+    .datos-contacto { display: grid; gap: 13px; font-weight: 800; }
+    .boton-oscuro { width: 100%; color: white; background: var(--verde-2); }
+    footer { min-height: 125px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 25px; padding: 28px max(6vw,25px); color: #8ca09a; background: #061915; font-size: .79rem; }
+    footer p { text-align: center; }
+    footer > span { justify-self: end; }
+    .whatsapp { position: fixed; z-index: 40; right: 22px; bottom: 22px; width: 55px; height: 55px; display: grid; place-items: center; border-radius: 50%; color: var(--verde-2); background: var(--dorado); box-shadow: 0 14px 35px rgba(0,0,0,.35); font-size: 1.45rem; }
+
+    .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 15px; background: rgba(0,0,0,.72); backdrop-filter: blur(8px); }
+    .modal.visible { display: flex; }
+    .modal-contenido { width: min(1120px, 100%); max-height: calc(100vh - 30px); overflow-y: auto; position: relative; padding: 30px; border: 1px solid rgba(229,180,90,.3); border-radius: 24px; background: #09231f; box-shadow: 0 30px 90px rgba(0,0,0,.5); }
+    .cerrar-modal { position: sticky; z-index: 5; top: 0; float: right; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: #102f2a; cursor: pointer; }
+    .modal h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); }
+    .modal-descripcion { max-width: 720px; color: #aab9b4; line-height: 1.55; }
+    .modal-cuerpo { clear: both; display: grid; grid-template-columns: minmax(250px,.72fr) 1.28fr; gap: 22px; align-items: start; margin-top: 20px; }
+    .modal-flyer { position: sticky; top: 0; overflow: hidden; border-radius: 16px; background: var(--verde-2); }
+    .modal-flyer img { width: 100%; }
+    .lista-paquetes { display: grid; gap: 12px; }
+    .paquete { position: relative; padding: 20px; border: 1px solid rgba(255,255,255,.11); border-radius: 16px; background: rgba(255,255,255,.035); }
+    .paquete.destacado { border-color: rgba(229,180,90,.58); background: rgba(220,168,76,.08); }
+    .recomendado { position: absolute; top: -9px; right: 14px; padding: 4px 9px; border-radius: 999px; color: var(--verde-2); background: var(--dorado-claro); font-size: .67rem; font-weight: 900; text-transform: uppercase; }
+    .cabecera-paquete { display: flex; justify-content: space-between; align-items: baseline; gap: 15px; }
+    .cabecera-paquete h3 { margin: 0; }
+    .cabecera-paquete strong { color: var(--dorado-claro); font-size: 1.2rem; }
+    .paquete ul { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 7px 18px; padding: 0; list-style: none; color: #c1cfca; font-size: .8rem; }
+    .paquete li::before { content: "✓"; margin-right: 7px; color: var(--dorado); }
+    .paquete a { display: inline-block; margin-top: 5px; color: var(--dorado-claro); font-weight: 900; font-size: .82rem; }
+
+    .visor-imagen { position: fixed; inset: 0; z-index: 120; display: none; grid-template-rows: 1fr auto; place-items: center; gap: 12px; padding: 54px 20px 22px; background: rgba(2,12,10,.94); backdrop-filter: blur(12px); }
+    .visor-imagen.visible { display: grid; }
+    .visor-imagen img { max-width: min(1200px,94vw); max-height: calc(100vh - 115px); object-fit: contain; border-radius: 14px; box-shadow: 0 25px 80px rgba(0,0,0,.58); }
+    .visor-imagen p { margin: 0; color: #d8e1de; font-weight: 700; text-align: center; }
+    .cerrar-visor { position: absolute; top: 14px; right: 16px; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; color: white; background: rgba(10,45,38,.92); cursor: pointer; font-size: 1.15rem; }
+    .cerrar-visor:hover, .cerrar-visor:focus-visible { color: var(--verde-2); background: var(--dorado-claro); outline: none; }
+
+    @media (max-width: 1050px) {
+      .cabecera { grid-template-columns: 1fr auto; }
+      .navegacion { position: fixed; top: 78px; left: 15px; right: 15px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 14px; border: 1px solid rgba(229,180,90,.2); border-radius: 18px; background: var(--verde-2); }
+      .navegacion.abierta { display: flex; }
+      .navegacion a { padding: 13px 12px; }
+      .boton-cotizar { display: none; }
+      .boton-menu { display: block; }
+      .hero { grid-template-columns: 1fr .8fr; gap: 3vw; }
+      .cuadricula-servicios { grid-template-columns: repeat(2, 1fr); }
+      .cuadricula-entregables { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .cabecera { height: 70px; padding: 0 18px; }
+      .marca img { width: 42px; height: 42px; }
+      .marca small { display: none; }
+      .navegacion { top: 70px; }
+      .hero { min-height: auto; grid-template-columns: 1fr; padding: 122px 20px 70px; }
+      h1 { font-size: clamp(3.5rem, 18vw, 5.6rem); }
+      .datos-hero { gap: 15px; }
+      .hero-imagen { min-height: 500px; }
+      .marco-hero { width: min(365px,85%); height: 480px; }
+      .nota-flotante { left: 0; bottom: 15px; }
+      .seccion { padding: 75px 20px; }
+      .encabezado-seccion { grid-template-columns: 1fr; gap: 17px; }
+      .cuadricula-servicios, .cuadricula-entregables { grid-template-columns: 1fr; }
+      .tarjeta-servicio { min-height: 400px; }
+      .entregable-media { height: 300px; }
+      .franja { grid-template-columns: 1fr; }
+      .franja-imagen { min-height: 500px; }
+      .franja-imagen::after { background: linear-gradient(to bottom, transparent 60%, #0c2c27 100%); }
+      .franja-texto { padding: 55px 22px 72px; }
+      .cabina, .trabajos, .contacto { grid-template-columns: 1fr; }
+      .cabina-beneficios { grid-template-columns: 1fr; }
+      .trabajos-panel { min-height: 300px; padding: 30px 22px; }
+      .contacto { gap: 35px; }
+      footer { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      footer > span { justify-self: center; }
+      .modal-contenido { padding: 20px; }
+      .modal-cuerpo { grid-template-columns: 1fr; }
+      .modal-flyer { position: static; max-height: 280px; }
+      .modal-flyer img { height: 280px; object-fit: cover; }
+      .paquete ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="cabecera">
+    <a class="marca" href="#inicio" aria-label="Ir al inicio">
+      <img src="assets/logo-ias.webp" alt="Logo IAS">
+      <span><strong>IAS</strong><small>Fotografía & Filmaciones</small></span>
+    </a>
+    <nav class="navegacion" id="navegacion">
+      <a href="#servicios">Servicios</a>
+      <a href="#cabina">Cabina</a>
+      <a href="#entregables">Entregables</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="boton-cotizar" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20cotizar%20una%20cobertura" target="_blank">Cotizar →</a>
+    <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-contenido">
+        <p class="etiqueta">✦ Fotografía · Filmación · Diseño</p>
+        <h1>Tu historia merece <em>verse así.</em></h1>
+        <p class="hero-texto">Capturamos la emoción real de bodas, 15 años, cumpleaños y celebraciones. También impulsamos marcas con video, diseño y tomas aéreas.</p>
+        <div class="acciones">
+          <a class="boton boton-dorado" href="#servicios">Explorar paquetes →</a>
+          <a class="boton boton-borde" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20reservar%20mi%20fecha" target="_blank">Reservar fecha</a>
+        </div>
+        <div class="datos-hero"><span><strong>10+</strong> servicios</span><span><strong>HD / 4K</strong> calidad visual</span><span><strong>Oruro</strong> Bolivia</span></div>
+      </div>
+      <div class="hero-imagen">
+        <div class="marco-hero"><img src="assets/hero-ias.webp" alt="Servicios de fotografía y filmación IAS"></div>
+        <div class="nota-flotante"><strong>Momentos reales</strong><small>Edición con identidad</small></div>
+      </div>
+    </section>
+
+    <section class="seccion servicios" id="servicios">
+      <div class="encabezado-seccion"><div><p class="etiqueta">Elige tu experiencia</p><h2>Servicios para cada historia</h2></div><p>Conoce nuestras opciones y abre cualquier servicio para revisar todo lo que incluye cada paquete.</p></div>
+      <div class="filtros" id="filtros"></div>
+      <div class="cuadricula-servicios" id="lista-servicios"></div>
+    </section>
+
+    <section class="franja">
+      <div class="franja-imagen"><img src="assets/dron-profesional.webp" alt="Servicio profesional de dron IAS"><span class="calidad">▶ Ultra HD 4K</span></div>
+      <div class="franja-texto"><p class="etiqueta">Producción completa</p><h2>Desde el primer encuadre hasta la entrega final.</h2><p>Combinamos cobertura documental, retratos dirigidos y edición dinámica para que cada recuerdo tenga emoción, ritmo y una presentación cuidada.</p><a href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20una%20cotizaci%C3%B3n%20personalizada" target="_blank">Quiero una propuesta personalizada →</a></div>
+    </section>
+
+    <section class="seccion cabina" id="cabina">
+      <div class="cabina-visual"><img src="assets/cabina-fotografica.jpeg" alt="Cabina fotográfica La Vida es de Recuerdos" loading="lazy"></div>
+      <div class="cabina-contenido">
+        <p class="etiqueta">Una experiencia dentro de tu evento</p>
+        <h2>La Vida es de Recuerdos</h2>
+        <p>Nuestra cabina fotográfica transforma cada celebración en un momento divertido y espontáneo. Tus invitados pueden tomarse fotografías, personalizarlas y llevarse un recuerdo impreso al instante.</p>
+        <div class="cabina-beneficios"><span>Fotografías impresas al instante</span><span>Pantalla táctil</span><span>Plantillas personalizadas</span><span>Fotografías digitales</span></div>
+        <div class="acciones"><a class="boton boton-dorado" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20cabina%20fotogr%C3%A1fica" target="_blank" rel="noopener">Consultar disponibilidad →</a></div>
+      </div>
+    </section>
+
+    <section class="seccion entregables" id="entregables">
+      <div class="encabezado-seccion"><div><p class="etiqueta">Del evento a tus manos</p><h2>Entregables de cada paquete</h2></div><p>Cada opción se prepara de forma personalizada para que tus fotografías y videos lleguen con una presentación especial.</p></div>
+      <div class="cuadricula-entregables">
+        <article class="entregable">
+          <div class="entregable-media"><img src="assets/paquete-1-entregable.jpeg" alt="Presentación del entregable del Paquete 1" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-1-presentacion.jpeg" alt="Contenido del Paquete 1" loading="lazy" tabindex="0" role="button"></div>
+          <div class="entregable-cuerpo"><span class="numero">01</span><h3>Paquete 1</h3><p>Entrega digital en disco personalizado, preparada con la identidad y temática de tu evento.</p></div>
+        </article>
+        <article class="entregable">
+          <div class="entregable-media"><img src="assets/paquete-2-entregable.jpeg" alt="Presentación del entregable del Paquete 2" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-2-presentacion.jpeg" alt="Contenido del Paquete 2" loading="lazy" tabindex="0" role="button"></div>
+          <div class="entregable-cuerpo"><span class="numero">02</span><h3>Paquete 2</h3><p>Presentación personalizada con material digital y álbum para conservar una selección de tus mejores momentos.</p></div>
+        </article>
+        <article class="entregable">
+          <div class="entregable-media"><img src="assets/paquete-3-entregable.jpeg" alt="Presentación del entregable del Paquete 3" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-3-presentacion.jpeg" alt="Contenido del Paquete 3" loading="lazy" tabindex="0" role="button"></div>
+          <div class="entregable-cuerpo"><span class="numero">03</span><h3>Paquete 3</h3><p>Una presentación más completa con álbumes personalizados, material digital y recuerdos listos para compartir.</p></div>
+        </article>
+        <article class="entregable">
+          <div class="entregable-media"><img src="assets/caja-trupan-frente.jpeg" alt="Caja Trupan personalizada" loading="lazy" tabindex="0" role="button"><img src="assets/caja-trupan-detalle.jpeg" alt="Detalle de caja Trupan grabada" loading="lazy" tabindex="0" role="button"></div>
+          <div class="entregable-cuerpo"><span class="numero">04</span><h3>Caja Trupan</h3><p>Caja de presentación grabada y personalizada para proteger y presentar tus recuerdos de una manera elegante.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion trabajos" id="trabajos">
+      <div>
+        <p class="etiqueta">Nuestro portafolio</p>
+        <h2>Fotos de referencia de trabajos anteriores</h2>
+        <p>Conoce coberturas reales realizadas por IAS Fotografía y Filmaciones. Visita nuestra galería para ver estilos, momentos y resultados de diferentes eventos.</p>
+      </div>
+      <div class="trabajos-panel">
+        <span class="trabajos-icono">▣</span>
+        <strong>Explora nuestra galería completa de fotografías</strong>
+        <a class="boton boton-dorado" href="https://iasfotografiayfilmacionesresuvidos.pixieset.com/zycfotografiayfilmaciones/" target="_blank" rel="noopener">Ver trabajos anteriores →</a>
+      </div>
+    </section>
+
+    <section class="seccion contacto" id="contacto">
+      <div><p class="etiqueta">Tu fecha puede ser la próxima</p><h2>Hagamos algo inolvidable.</h2><p>Cuéntanos qué celebras, la fecha y el lugar. Te ayudamos a elegir el paquete ideal.</p></div>
+      <div class="datos-contacto"><a class="boton boton-oscuro" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20informaci%C3%B3n%20para%20mi%20evento" target="_blank">Escribir por WhatsApp</a><span>⌖ Oruro, Bolivia</span><span>☎ Reservas: 72483117</span></div>
+    </section>
+  </main>
+
+  <footer><a class="marca" href="#inicio"><img src="assets/logo-ias.webp" alt="Logo IAS"><span><strong>IAS</strong><small>Fotografía & Filmaciones</small></span></a><p>Capturamos tus mejores momentos · Impulsamos tus redes sociales.</p><span>© 2026 IAS</span></footer>
+  <a class="whatsapp" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20cotizar%20una%20cobertura" target="_blank" aria-label="Contactar por WhatsApp">✆</a>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" id="cerrar-modal" aria-label="Cerrar ventana">✕</button>
+      <p class="etiqueta" id="modal-categoria"></p>
+      <h2 id="modal-titulo"></h2>
+      <p class="modal-descripcion" id="modal-descripcion"></p>
+      <div class="modal-cuerpo"><div class="modal-flyer"><img id="modal-imagen" src="" alt=""></div><div class="lista-paquetes" id="modal-paquetes"></div></div>
+    </div>
+  </div>
+
+  <div class="visor-imagen" id="visor-imagen" role="dialog" aria-modal="true" aria-labelledby="visor-titulo">
+    <button class="cerrar-visor" id="cerrar-visor" aria-label="Cerrar imagen ampliada">✕</button>
+    <img id="imagen-ampliada" src="" alt="">
+    <p id="visor-titulo"></p>
+  </div>
+
+  <script>
+    const servicios = [
+      { id:'cumpleanos', titulo:'Cumpleaños', categoria:'Eventos', imagen:'assets/cumpleanos.webp', descripcion:'Video HD, fotografía, álbumes y contenido para redes según el paquete.', paquetes:[
+        ['Paquete 1',['Video HD','Entrega digital']],
+        ['Paquete 2',['Video HD digital','40 fotografías','Álbum personalizado + digital']],
+        ['Paquete 3',['Video HD digital','Mejores momentos','60 fotografías + digital','Álbum personalizado','1 fotografía A4','Cuaderno de presentación USB'],true],
+        ['Paquete 4',['Video HD digital','Mejores momentos','Reel para redes sociales','80 fotografías + digital','Álbum personalizado','2 fotografías A4','Caja de presentación + USB 16 GB']]
+      ]},
+      { id:'quince', titulo:'15 años', categoria:'Eventos', imagen:'assets/quince-anos.webp', descripcion:'Una cobertura pensada para conservar cada etapa de una noche inolvidable.', paquetes:[
+        ['Básico',['Video HD editado y musicalizado, 90 min','50 fotografías editadas e impresas','Álbum genérico','Fotos 10 × 15 cm']],
+        ['Estándar',['Video HD editado, 120 min','80 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
+        ['Premium',['Video HD de todo el evento','120 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Video de mejores momentos','Caja Trupan USB']]
+      ]},
+      { id:'bautizo', titulo:'Bautizo', categoria:'Eventos', imagen:'assets/bautizo.webp', descripcion:'Ceremonia y recuerdos familiares entregados en formato físico y digital.', paquetes:[
+        ['Paquete 1',['Video HD + digital','25 fotografías','Álbum + digital']],
+        ['Paquete 2',['Video HD + digital','40 fotografías + álbum digital','1 fotografía A4','Caja Trupan USB'],true]
+      ]},
+      { id:'civil', titulo:'Boda civil', categoria:'Bodas', imagen:'assets/boda-civil.webp', descripcion:'Cobertura íntima y elegante de la ceremonia civil y su sesión de pareja.', paquetes:[
+        ['Paquete 1',['Video HD editado y musicalizado','Sesión de fotos paseo','30 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','Entrega en 10 días']],
+        ['Paquete 2',['Video HD editado','Sesión de fotos paseo','60 fotografías editadas e impresas','Álbum personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB','Entrega en 10 días'],true]
+      ]},
+      { id:'religiosa', titulo:'Boda religiosa', categoria:'Bodas', imagen:'assets/boda-religiosa.webp', descripcion:'La ceremonia, los detalles y las emociones de la pareja en alta definición.', paquetes:[
+        ['Paquete 1',['Video HD editado y musicalizado','Sesión de fotos paseo','30 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','Entrega en 10 días']],
+        ['Paquete 2',['Video HD editado','Sesión de fotos paseo','60 fotografías editadas e impresas','Álbum personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB','Entrega en 10 días'],true],
+        ['Tomas con dron',['Cobertura aérea adicional de la ceremonia o locación']]
+      ]},
+      { id:'recepcion', titulo:'Recepción social', categoria:'Bodas', imagen:'assets/recepcion-social.webp', descripcion:'Cobertura de la celebración completa, desde la entrada hasta el último brindis.', paquetes:[
+        ['Básico',['Video HD editado, 90 min','70 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','1 fotografía A4']],
+        ['Estándar',['Video HD editado, 120 min','100 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
+        ['Premium',['Video HD editado de 3 a 4 horas','Mejores momentos de 5 a 10 min','160 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Caja Trupan + USB de 16 GB']],
+        ['Tomas con dron',['Cobertura aérea adicional de la recepción o locación']]
+      ]},
+      { id:'sesion', titulo:'Sesión de fotos', categoria:'Producción', imagen:'assets/sesion-fotos.webp', descripcion:'Sesiones de interior o exterior con edición, cambios de vestuario y álbum online.', paquetes:[
+        ['Interior básico',['1 hora de sesión','10 fotografías editadas','Entrega digital y USB']],
+        ['Interior intermedio',['2 horas de sesión','20 fotografías editadas','Cambios de vestuario','Entrega digital y USB','Álbum online']],
+        ['Exterior básico',['1 hora de sesión','10 fotografías editadas','1 locación','Entrega digital y USB']],
+        ['Exterior intermedio',['2 horas de sesión','20 fotografías editadas','Cambios de vestuario','2 locaciones','Entrega digital y USB','Álbum online'],true]
+      ]},
+      { id:'patronal', titulo:'Fiesta patronal', categoria:'Eventos', imagen:'assets/fiesta-patronal.webp', descripcion:'Misa, recorrido y celebración registrados en foto y video para toda la comunidad.', paquetes:[
+        ['Paquete 1',['Video HD + digital']],
+        ['Paquete 2',['Video HD + digital','40 fotografías + álbum digital']],
+        ['Paquete 3',['Video HD + digital','60 fotografías + álbum digital','Video de mejores momentos','1 fotografía A4'],true],
+        ['Paquete 4',['Video HD personalizado','80 fotografías + álbum personalizado y digital','Video de mejores momentos','2 fotografías A4','Cuaderno USB']],
+        ['Coberturas puntuales',['Misa','Recorrido']]
+      ]},
+      { id:'empresa', titulo:'Contenido empresarial', categoria:'Producción', imagen:'assets/empresa-redes.webp', descripcion:'Contenido mensual para mostrar tu marca con videos, flyers, fotos y tomas aéreas.', paquetes:[
+        ['Pack Empresa',['3 videos para TikTok','Flyer publicitario','Flyer animado','Tomas con dron']],
+        ['Pack Impulso',['5 videos para TikTok','3 flyers publicitarios','2 flyers animados','10 fotografías','Guion personalizado','Tomas con dron'],true]
+      ]},
+      { id:'dron', titulo:'Dron profesional', categoria:'Producción', imagen:'assets/dron-profesional.webp', descripcion:'Una nueva perspectiva en Ultra HD 4K para eventos, marcas y propiedades.', paquetes:[
+        ['Vuelo profesional',['Tomas aéreas en Ultra HD 4K','Propiedades, terrenos y bienes raíces','Fotografías masivas de grupos','Panorámicas de salones y fachadas','Clips dinámicos para Reels y TikTok'],true]
+      ]}
+    ];
+
+    const filtros = ['Todos','Eventos','Bodas','Producción'];
+    const contenedorFiltros = document.getElementById('filtros');
+    const listaServicios = document.getElementById('lista-servicios');
+    let filtroActivo = 'Todos';
+
+    function mostrarFiltros() {
+      contenedorFiltros.innerHTML = filtros.map(f => `<button class="${f === filtroActivo ? 'activo' : ''}" data-filtro="${f}">${f}</button>`).join('');
+      contenedorFiltros.querySelectorAll('button').forEach(boton => boton.addEventListener('click', () => { filtroActivo = boton.dataset.filtro; mostrarFiltros(); mostrarServicios(); }));
+    }
+
+    function mostrarServicios() {
+      const visibles = filtroActivo === 'Todos' ? servicios : servicios.filter(s => s.categoria === filtroActivo);
+      listaServicios.innerHTML = visibles.map(s => `<button class="tarjeta-servicio" data-id="${s.id}"><img src="${s.imagen}" alt="Paquetes de ${s.titulo}" loading="lazy"><span class="info-servicio"><span class="categoria">${s.categoria}</span><span class="titulo-servicio">${s.titulo}</span><span class="pie-servicio"><span>Ver paquetes y detalles</span><span class="flecha">→</span></span></span></button>`).join('');
+      listaServicios.querySelectorAll('.tarjeta-servicio').forEach(tarjeta => tarjeta.addEventListener('click', () => abrirModal(servicios.find(s => s.id === tarjeta.dataset.id))));
+    }
+
+    const modal = document.getElementById('modal');
+    function abrirModal(servicio) {
+      document.getElementById('modal-categoria').textContent = servicio.categoria;
+      document.getElementById('modal-titulo').textContent = servicio.titulo;
+      document.getElementById('modal-descripcion').textContent = servicio.descripcion;
+      const imagen = document.getElementById('modal-imagen');
+      imagen.src = servicio.imagen; imagen.alt = `Flyer de ${servicio.titulo}`;
+      document.getElementById('modal-paquetes').innerHTML = servicio.paquetes.map(p => {
+        const [nombre, detalles, destacado] = p;
+        const mensaje = encodeURIComponent(`Hola IAS, quiero consultar por ${servicio.titulo} — ${nombre}.`);
+        return `<article class="paquete ${destacado ? 'destacado' : ''}">${destacado ? '<span class="recomendado">Más elegido</span>' : ''}<div class="cabecera-paquete"><h3>${nombre}</h3></div><ul>${detalles.map(d => `<li>${d}</li>`).join('')}</ul><a href="https://wa.me/59172483117?text=${mensaje}" target="_blank" rel="noopener">Consultar este paquete →</a></article>`;
+      }).join('');
+      modal.classList.add('visible'); document.body.classList.add('modal-abierto');
+    }
+    function cerrarModal() { modal.classList.remove('visible'); document.body.classList.remove('modal-abierto'); }
+    document.getElementById('cerrar-modal').addEventListener('click', cerrarModal);
+    modal.addEventListener('click', e => { if (e.target === modal) cerrarModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+
+    const botonMenu = document.getElementById('boton-menu');
+    const navegacion = document.getElementById('navegacion');
+    botonMenu.addEventListener('click', () => { navegacion.classList.toggle('abierta'); botonMenu.textContent = navegacion.classList.contains('abierta') ? '✕' : '☰'; });
+    navegacion.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navegacion.classList.remove('abierta'); botonMenu.textContent = '☰'; }));
+
+    const visor = document.getElementById('visor-imagen');
+    const imagenAmpliada = document.getElementById('imagen-ampliada');
+    const tituloVisor = document.getElementById('visor-titulo');
+    const cerrarVisorBoton = document.getElementById('cerrar-visor');
+    let ultimaImagenActiva = null;
+
+    function abrirVisor(imagen) {
+      ultimaImagenActiva = imagen;
+      imagenAmpliada.src = imagen.src;
+      imagenAmpliada.alt = imagen.alt;
+      tituloVisor.textContent = imagen.alt;
+      visor.classList.add('visible');
+      document.body.classList.add('modal-abierto');
+      cerrarVisorBoton.focus();
+    }
+
+    function cerrarVisor() {
+      visor.classList.remove('visible');
+      imagenAmpliada.src = '';
+      document.body.classList.remove('modal-abierto');
+      ultimaImagenActiva?.focus();
+    }
+
+    document.querySelectorAll('.entregable-media img').forEach(imagen => {
+      imagen.addEventListener('click', () => abrirVisor(imagen));
+      imagen.addEventListener('keydown', evento => {
+        if (evento.key === 'Enter' || evento.key === ' ') {
+          evento.preventDefault();
+          abrirVisor(imagen);
+        }
+      });
+    });
+    cerrarVisorBoton.addEventListener('click', cerrarVisor);
+    visor.addEventListener('click', evento => { if (evento.target === visor) cerrarVisor(); });
+    document.addEventListener('keydown', evento => { if (evento.key === 'Escape' && visor.classList.contains('visible')) cerrarVisor(); });
+
+    mostrarFiltros();
+    mostrarServicios();
+  </script>
+</body>
+</html>
