@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="IAS Fotografía y Filmaciones: bodas, 15 años, cumpleaños, bautizos, sesiones, fiestas patronales, contenido empresarial y dron en Oruro, Bolivia.">
+  <meta name="description" content="IAS Fotografía y Filmaciones: graduaciones, bodas, 15 años, cumpleaños, bautizos, sesiones, fiestas patronales, contenido empresarial y dron en Oruro, Bolivia.">
   <title>IAS Fotografía y Filmaciones | Oruro</title>
   <link rel="icon" href="assets/logo-ias.webp">
   <style>
@@ -254,6 +254,7 @@
     </a>
     <nav class="navegacion" id="navegacion">
       <a href="#servicios">Servicios</a>
+      <a href="#graduacion">Graduaciones</a>
       <a href="#cabina">Cabina</a>
       <a href="#entregables">Entregables</a>
       <a href="#trabajos">Trabajos</a>
@@ -268,7 +269,7 @@
       <div class="hero-contenido">
         <p class="etiqueta">✦ Fotografía · Filmación · Diseño</p>
         <h1>Tu historia merece <em>verse así.</em></h1>
-        <p class="hero-texto">Capturamos la emoción real de bodas, 15 años, cumpleaños y celebraciones. También impulsamos marcas con video, diseño y tomas aéreas.</p>
+        <p class="hero-texto">Capturamos la emoción real de bodas, graduaciones, 15 años, cumpleaños y celebraciones. También impulsamos marcas con video, diseño y tomas aéreas.</p>
         <div class="acciones">
           <a class="boton boton-dorado" href="#servicios">Explorar paquetes →</a>
           <a class="boton boton-borde" href="https://wa.me/59172483117?text=Hola%20IAS%2C%20quiero%20reservar%20mi%20fecha" target="_blank">Reservar fecha</a>
@@ -397,6 +398,11 @@
         ['Estándar',['Video de todo el evento en FHD, editado y musicalizado','80 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
         ['Premium',['Video de todo el evento en FHD, editado y musicalizado','120 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Video de mejores momentos','Caja Trupan USB']]
       ]},
+      { id:'graduacion', titulo:'Graduaciones', categoria:'Eventos', imagen:'assets/graduacion.svg', descripcion:'Fotografía y video FHD para tu graduación. Cobertura de la celebración sin límite de grabación, álbumes personalizados y recuerdos impresos.', paquetes:[
+        ['Básico',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','70 fotografías editadas, retocadas e impresas','Álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4'],false,'700 Bs'],
+        ['Estándar',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','100 fotografías editadas, retocadas e impresas','Álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4','Video de los mejores momentos','Cuaderno de presentación USB'],true,'950 Bs'],
+        ['Premium',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','Video de los mejores momentos del evento','160 fotografías editadas, retocadas e impresas','Álbum especial','Fotografías de 10 × 15 cm','2 fotografías tamaño A4','Sesión de fotos básica','Caja Trupan de presentación USB','USB de 16 GB'],false,'1.300 Bs']
+      ]},
       { id:'bautizo', titulo:'Bautizo', categoria:'Eventos', imagen:'assets/bautizo.webp', descripcion:'Ceremonia y recuerdos familiares entregados en formato físico y digital.', paquetes:[
         ['Paquete 1',['Video FHD + digital','25 fotografías','Álbum + digital']],
         ['Paquete 2',['Video FHD + digital','40 fotografías + álbum digital','1 fotografía A4','Caja Trupan USB'],true]
@@ -472,9 +478,9 @@
       enlaceImagen.hidden = !servicio.flyer;
       enlaceImagen.href = servicio.flyer || '#';
       document.getElementById('modal-paquetes').innerHTML = servicio.paquetes.map(p => {
-        const [nombre, detalles, destacado] = p;
+        const [nombre, detalles, destacado, precio] = p;
         const mensaje = encodeURIComponent(`Hola IAS, quiero consultar por ${servicio.titulo} — ${nombre}.`);
-        return `<article class="paquete ${destacado ? 'destacado' : ''}">${destacado ? '<span class="recomendado">Más elegido</span>' : ''}<div class="cabecera-paquete"><h3>${nombre}</h3></div><ul>${detalles.map(d => `<li>${d}</li>`).join('')}</ul><a href="https://wa.me/59172483117?text=${mensaje}" target="_blank" rel="noopener">Consultar este paquete →</a></article>`;
+        return `<article class="paquete ${destacado ? 'destacado' : ''}">${destacado ? '<span class="recomendado">Más elegido</span>' : ''}<div class="cabecera-paquete"><h3>${nombre}</h3>${precio ? `<strong>${precio}</strong>` : ""}</div><ul>${detalles.map(d => `<li>${d}</li>`).join('')}</ul><a href="https://wa.me/59172483117?text=${mensaje}" target="_blank" rel="noopener">Consultar este paquete →</a></article>`;
       }).join('');
       modal.classList.add('visible'); document.body.classList.add('modal-abierto');
     }
@@ -526,16 +532,19 @@
 
     mostrarFiltros();
     mostrarServicios();
-    function abrirBodasIntegralesDesdeEnlace() {
-      if (window.location.hash !== '#bodas-integrales') return;
-      filtroActivo = 'Bodas';
+    function abrirServicioDesdeEnlace() {
+      const id = window.location.hash.slice(1);
+      if (!['bodas-integrales', 'graduacion'].includes(id)) return;
+      const servicio = servicios.find(s => s.id === id);
+      if (!servicio) return;
+      filtroActivo = servicio.categoria;
       mostrarFiltros();
       mostrarServicios();
       document.getElementById('servicios').scrollIntoView();
-      abrirModal(servicios.find(servicio => servicio.id === 'bodas-integrales'));
+      abrirModal(servicio);
     }
-    window.addEventListener('hashchange', abrirBodasIntegralesDesdeEnlace);
-    abrirBodasIntegralesDesdeEnlace();
+    window.addEventListener('hashchange', abrirServicioDesdeEnlace);
+    abrirServicioDesdeEnlace();
   </script>
 </body>
 </html>
