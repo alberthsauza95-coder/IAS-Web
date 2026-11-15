@@ -258,7 +258,7 @@
     <nav class="navegacion" id="navegacion">
       <a href="#servicios">Servicios</a>
       <a href="#graduacion">Graduaciones</a>
-      <a href="#recepcion">Recepciones sociales</a>
+      <a href="#recepciones-sociales">Recepciones sociales</a>
       <a href="#cabina">Cabina</a>
       <a href="#entregables">Entregables</a>
       <a href="#trabajos">Trabajos</a>
@@ -420,7 +420,13 @@
         ['Paquete 2',['Video FHD editado','Sesión de fotos paseo','60 fotografías editadas e impresas','Álbum personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB','Entrega en 10 días'],true],
         ['Tomas con dron',['Cobertura aérea adicional de la ceremonia o locación']]
       ]},
-      { id:'recepcion', titulo:'Recepción social', categoria:'Eventos', imagen:'assets/recepcion-social.webp', descripcion:'Paquetes de fotografía y filmación FHD para recepciones sociales y celebraciones. Elige entre Básico, Estándar y Premium.', paquetes:[
+      { id:'recepcion', titulo:'Recepción social (bodas)', categoria:'Bodas', imagen:'assets/recepcion-social.webp', descripcion:'Cobertura de la celebración de bodas, desde la entrada hasta el último brindis.', paquetes:[
+        ['Básico',['Video de todo el evento editado en FHD','70 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','1 fotografía A4']],
+        ['Estándar',['Video de todo el evento editado en FHD','100 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
+        ['Premium',['Video de todo el evento editado en FHD','Video de mejores momentos','160 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Caja Trupan + USB de 16 GB']],
+        ['Tomas con dron',['Cobertura aérea adicional de la recepción o locación']]
+      ]},
+      { id:'recepciones-sociales', titulo:'Recepciones sociales', categoria:'Eventos', imagen:'assets/portafolio-tradicion.jpg', descripcion:'Cobertura fotográfica y filmación para todo tipo de recepciones sociales: celebraciones, aniversarios, fiestas familiares y otros eventos. Paquetes con video editado en FHD.', paquetes:[
         ['Básico',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','70 fotografías editadas y retocadas para impresión','Entrega en álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4'],false,'700 Bs'],
         ['Estándar',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','100 fotografías editadas y retocadas para impresión','Entrega en álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4','Video de mejores momentos','Cuaderno de presentación USB'],true,'950 Bs'],
         ['Premium',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','Video de mejores momentos de todo el evento','160 fotografías editadas y retocadas para impresión','Entrega en álbum especial','Fotografías de 10 × 15 cm','2 fotografías tamaño A4','Sesión de fotos básica','Caja Trupan de presentación USB','USB de 16 GB'],false,'1.300 Bs']
@@ -537,7 +543,7 @@
     mostrarServicios();
     function abrirServicioDesdeEnlace() {
       const id = window.location.hash.slice(1);
-      if (!['bodas-integrales', 'graduacion', 'recepcion'].includes(id)) return;
+      if (!['bodas-integrales', 'graduacion', 'recepciones-sociales', 'recepcion'].includes(id)) return;
       const servicio = servicios.find(s => s.id === id);
       if (!servicio) return;
       filtroActivo = servicio.categoria;
