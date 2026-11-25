@@ -313,15 +313,15 @@
       <div class="cuadricula-entregables">
         <article class="entregable">
           <div class="entregable-media"><img src="assets/paquete-1-entregable.jpeg" alt="Presentación del entregable del Paquete 1" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-1-presentacion.jpeg" alt="Contenido del Paquete 1" loading="lazy" tabindex="0" role="button"></div>
-          <div class="entregable-cuerpo"><span class="numero">01</span><h3>Paquete 1</h3><p>Entrega digital en disco personalizado, preparada con la identidad y temática de tu evento.</p></div>
+          <div class="entregable-cuerpo"><span class="numero">01</span><h3>Paquete 1</h3><p>Entrega del video en USB, según el paquete contratado.</p></div>
         </article>
         <article class="entregable">
           <div class="entregable-media"><img src="assets/paquete-2-entregable.jpeg" alt="Presentación del entregable del Paquete 2" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-2-presentacion.jpeg" alt="Contenido del Paquete 2" loading="lazy" tabindex="0" role="button"></div>
-          <div class="entregable-cuerpo"><span class="numero">02</span><h3>Paquete 2</h3><p>Presentación personalizada con material digital y álbum para conservar una selección de tus mejores momentos.</p></div>
+          <div class="entregable-cuerpo"><span class="numero">02</span><h3>Paquete 2</h3><p>Presentación personalizada con USB y álbum, según el paquete contratado.</p></div>
         </article>
         <article class="entregable">
           <div class="entregable-media"><img src="assets/paquete-3-entregable.jpeg" alt="Presentación del entregable del Paquete 3" loading="lazy" tabindex="0" role="button"><img src="assets/paquete-3-presentacion.jpeg" alt="Contenido del Paquete 3" loading="lazy" tabindex="0" role="button"></div>
-          <div class="entregable-cuerpo"><span class="numero">03</span><h3>Paquete 3</h3><p>Una presentación más completa con álbumes personalizados, material digital y recuerdos listos para compartir.</p></div>
+          <div class="entregable-cuerpo"><span class="numero">03</span><h3>Paquete 3</h3><p>Una presentación más completa con USB, álbumes personalizados y recuerdos, según el paquete contratado.</p></div>
         </article>
         <article class="entregable">
           <div class="entregable-media"><img src="assets/caja-trupan-frente.jpg" alt="Caja Trupan personalizada" loading="lazy" tabindex="0" role="button"><img src="assets/caja-trupan-detalle.jpeg" alt="Detalle de caja Trupan grabada" loading="lazy" tabindex="0" role="button"></div>
@@ -391,68 +391,69 @@
 
   <script>
     const servicios = [
-      { id:'cumpleanos', titulo:'Cumpleaños', categoria:'Eventos', imagen:'assets/cumpleanos.webp', descripcion:'Video FHD, fotografía, álbumes y contenido para redes según el paquete.', paquetes:[
-        ['Paquete 1',['Video FHD','Entrega digital']],
-        ['Paquete 2',['Video FHD digital','40 fotografías','Álbum personalizado + digital']],
-        ['Paquete 3',['Video FHD digital','Mejores momentos','60 fotografías + digital','Álbum personalizado','1 fotografía A4','Cuaderno de presentación USB'],true],
-        ['Paquete 4',['Video FHD digital','Mejores momentos','Reel para redes sociales','80 fotografías + digital','Álbum personalizado','2 fotografías A4','Caja de presentación + USB 16 GB']]
+      { id:'cumpleanos', titulo:'Cumpleaños', categoria:'Eventos', imagen:'assets/portafolio-cumpleanos.jpg', descripcion:'Video FHD, fotografía, álbumes y contenido para redes según el paquete.', paquetes:[
+        ["Paquete 1",["Video FHD","Entrega digital"],false,"300 Bs"],
+        ["Paquete 2",["Video FHD","Entrega en USB de 16 GB","30 fotografías","Álbum personalizado + digital"],false,"500 Bs"],
+        ["Paquete 3",["Video FHD","Entrega en USB de 16 GB","Video de los mejores momentos","40 fotografías + digital","Álbum personalizado","1 fotografía A4","Cuaderno de presentación USB"],true,"600 Bs"],
+        ["Paquete 4",["Video FHD","Entrega en USB de 16 GB","Video de los mejores momentos","Reel para redes sociales","60 fotografías + digital","Álbum personalizado","2 fotografías A4","Caja Trupan de presentación USB"],false,"850 Bs"]
       ]},
-      { id:'quince', titulo:'15 años', categoria:'Eventos', imagen:'assets/quince-anos.webp', descripcion:'Una cobertura pensada para conservar cada etapa de una noche inolvidable.', paquetes:[
-        ['Básico',['Video de todo el evento en FHD, editado y musicalizado','50 fotografías editadas e impresas','Álbum genérico','Fotos 10 × 15 cm']],
-        ['Estándar',['Video de todo el evento en FHD, editado y musicalizado','80 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
-        ['Premium',['Video de todo el evento en FHD, editado y musicalizado','120 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Video de mejores momentos','Caja Trupan USB']]
+      { id:'quince', titulo:'15 años', categoria:'Eventos', imagen:'assets/portafolio-quince-anos.jpg', descripcion:'Una cobertura pensada para conservar cada etapa de una noche inolvidable.', paquetes:[
+        ["Básico",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","30 fotografías editadas y retocadas para impresión","Álbum genérico","Fotografías de 10 × 15 cm"],false,"600 Bs"],
+        ["Estándar",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","50 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4","Video de los mejores momentos","Cuaderno de presentación USB"],true,"750 Bs"],
+        ["Premium",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","70 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","2 fotografías A4","Sesión de fotos básica","Video de los mejores momentos","Caja Trupan de presentación USB"],false,"950 Bs"]
       ]},
-      { id:'graduacion', titulo:'Graduaciones', categoria:'Eventos', imagen:'assets/graduaciones-paquetes.webp', flyer:'assets/graduaciones-paquetes.webp', descripcion:'Fotografía y video FHD para tu graduación. Cobertura de la celebración sin límite de grabación, álbumes personalizados y recuerdos impresos.', paquetes:[
-        ['Básico',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','70 fotografías editadas, retocadas e impresas','Álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4'],false,'700 Bs'],
-        ['Estándar',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','100 fotografías editadas, retocadas e impresas','Álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4','Video de los mejores momentos','Cuaderno de presentación USB'],true,'950 Bs'],
-        ['Premium',['Video FHD editado, musicalizado y retocado; grabación sin límite de tiempo','Presentación del video en tapa dura con diseño personalizado','Video de los mejores momentos del evento','160 fotografías editadas, retocadas e impresas','Álbum especial','Fotografías de 10 × 15 cm','2 fotografías tamaño A4','Sesión de fotos básica','Caja Trupan de presentación USB','USB de 16 GB'],false,'1.300 Bs']
+      { id:'graduacion', titulo:'Graduaciones', categoria:'Eventos', imagen:'assets/portafolio-tradicion.jpg', descripcion:'Fotografía y video FHD para tu graduación. Cobertura de la celebración sin límite de grabación, álbumes personalizados y recuerdos impresos.', paquetes:[
+        ["Básico",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","70 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4"],false,"700 Bs"],
+        ["Estándar",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","100 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4","Video de los mejores momentos","Cuaderno de presentación USB"],true,"950 Bs"],
+        ["Premium",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Video de los mejores momentos de todo el evento","160 fotografías editadas y retocadas para impresión","Álbum especial","Fotografías de 10 × 15 cm","2 fotografías A4","Sesión de fotos básica","Caja Trupan de presentación USB"],false,"1.300 Bs"]
       ]},
-      { id:'bautizo', titulo:'Bautizo', categoria:'Eventos', imagen:'assets/bautizo.webp', descripcion:'Ceremonia y recuerdos familiares entregados en formato físico y digital.', paquetes:[
-        ['Paquete 1',['Video FHD + digital','25 fotografías','Álbum + digital']],
-        ['Paquete 2',['Video FHD + digital','40 fotografías + álbum digital','1 fotografía A4','Caja Trupan USB'],true]
+      { id:'bautizo', titulo:'Bautizo', categoria:'Eventos', imagen:'assets/portafolio-tradicion.jpg', descripcion:'Ceremonia y recuerdos familiares entregados en formato físico y digital.', paquetes:[
+        ["Paquete 1",["Video en USB","25 fotografías","Álbum + entrega digital"],false,"400 Bs"],
+        ["Paquete 2",["Video en USB","40 fotografías","Álbum + entrega digital","1 fotografía A4","Caja Trupan de presentación USB"],true,"550 Bs"]
       ]},
-      { id:'civil', titulo:'Boda civil', categoria:'Bodas', imagen:'assets/boda-civil.webp', descripcion:'Cobertura íntima y elegante de la ceremonia civil y su sesión de pareja.', paquetes:[
-        ['Paquete 1',['Video FHD editado y musicalizado','Sesión de fotos paseo','30 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','Entrega en 10 días']],
-        ['Paquete 2',['Video FHD editado','Sesión de fotos paseo','60 fotografías editadas e impresas','Álbum personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB','Entrega en 10 días'],true]
+      { id:'civil', titulo:'Boda civil', categoria:'Bodas', imagen:'assets/portafolio-boda.jpg', descripcion:'Cobertura íntima y elegante de la ceremonia civil y su sesión de pareja.', paquetes:[
+        ["Paquete 1",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Sesión de fotos de paseo","10 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","Entrega 10 días después del evento"],false,"500 Bs"],
+        ["Paquete 2",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Sesión de fotos de paseo","30 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4","Video de los mejores momentos","Cuaderno de presentación USB","Entrega 10 días después del evento"],true,"650 Bs"]
       ]},
-      { id:'religiosa', titulo:'Boda religiosa', categoria:'Bodas', imagen:'assets/boda-religiosa.webp', descripcion:'La ceremonia, los detalles y las emociones de la pareja en alta definición.', paquetes:[
-        ['Paquete 1',['Video FHD editado y musicalizado','Sesión de fotos paseo','30 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','Entrega en 10 días']],
-        ['Paquete 2',['Video FHD editado','Sesión de fotos paseo','60 fotografías editadas e impresas','Álbum personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB','Entrega en 10 días'],true],
-        ['Tomas con dron',['Cobertura aérea adicional de la ceremonia o locación']]
+      { id:'religiosa', titulo:'Boda religiosa', categoria:'Bodas', imagen:'assets/portafolio-boda.jpg', descripcion:'La ceremonia, los detalles y las emociones de la pareja en alta definición.', paquetes:[
+        ["Paquete 1",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Sesión de fotos de paseo","10 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","Entrega 10 días después del evento"],false,"500 Bs"],
+        ["Paquete 2",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Sesión de fotos de paseo","30 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4","Video de los mejores momentos","Cuaderno de presentación USB","Entrega 10 días después del evento"],true,"650 Bs"],
+        ["Tomas con dron",["Cobertura aérea adicional"],false,"200 Bs"]
       ]},
-      { id:'recepcion', titulo:'Recepción social (bodas)', categoria:'Bodas', imagen:'assets/recepcion-social.webp', descripcion:'Cobertura de la celebración de bodas, desde la entrada hasta el último brindis.', paquetes:[
-        ['Básico',['Video de todo el evento editado en FHD','70 fotografías editadas e impresas','Álbum genérico personalizado','Fotos 10 × 15 cm','1 fotografía A4']],
-        ['Estándar',['Video de todo el evento editado en FHD','100 fotografías editadas e impresas','Álbum genérico personalizado','1 fotografía A4','Video de mejores momentos','Cuaderno USB'],true],
-        ['Premium',['Video de todo el evento editado en FHD','Video de mejores momentos','160 fotografías editadas e impresas','Álbum especial','2 fotografías A4','Sesión de fotos básica','Caja Trupan + USB de 16 GB']],
-        ['Tomas con dron',['Cobertura aérea adicional de la recepción o locación']]
+      { id:'recepcion', titulo:'Recepción social (bodas)', categoria:'Bodas', imagen:'assets/portafolio-boda.jpg', descripcion:'Cobertura de la celebración de bodas, desde la entrada hasta el último brindis.', paquetes:[
+        ["Básico",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","70 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4"],false,"700 Bs"],
+        ["Estándar",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","100 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","2 fotografías A4","Video de los mejores momentos","Cuaderno de presentación USB"],true,"950 Bs"],
+        ["Premium",["Video editado, musicalizado y retocado en FHD","Entrega en USB de 16 GB","Video de los mejores momentos de todo el evento","160 fotografías editadas y retocadas para impresión","Álbum especial","Fotografías de 10 × 15 cm","3 fotografías A4","Sesión de fotos básica","Caja Trupan de presentación USB"],false,"1.300 Bs"],
+        ["Tomas con dron",["Cobertura aérea adicional"],false,"200 Bs"]
       ]},
       { id:'recepciones-sociales', titulo:'Recepciones sociales', categoria:'Eventos', imagen:'assets/portafolio-tradicion.jpg', descripcion:'Cobertura fotográfica y filmación para todo tipo de recepciones sociales: celebraciones, aniversarios, fiestas familiares y otros eventos. Paquetes con video editado en FHD.', paquetes:[
-        ['Básico',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','70 fotografías editadas y retocadas para impresión','Entrega en álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4'],false,'700 Bs'],
-        ['Estándar',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','100 fotografías editadas y retocadas para impresión','Entrega en álbum genérico personalizado','Fotografías de 10 × 15 cm','1 fotografía tamaño A4','Video de mejores momentos','Cuaderno de presentación USB'],true,'950 Bs'],
-        ['Premium',['Video editado, musicalizado y retocado en FHD','Presentación en tapa dura con diseño especial','Video de mejores momentos de todo el evento','160 fotografías editadas y retocadas para impresión','Entrega en álbum especial','Fotografías de 10 × 15 cm','2 fotografías tamaño A4','Sesión de fotos básica','Caja Trupan de presentación USB','USB de 16 GB'],false,'1.300 Bs']
+        ["Básico",["Video editado, musicalizado y retocado en FHD","Entrega en USB","70 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4"],false,"700 Bs"],
+        ["Estándar",["Video editado, musicalizado y retocado en FHD","Entrega en USB","100 fotografías editadas y retocadas para impresión","Álbum genérico personalizado","Fotografías de 10 × 15 cm","1 fotografía A4","Video de los mejores momentos","Cuaderno de presentación USB"],true,"950 Bs"],
+        ["Premium",["Video editado, musicalizado y retocado en FHD","Entrega en USB","Video de los mejores momentos de todo el evento","160 fotografías editadas y retocadas para impresión","Álbum especial","Fotografías de 10 × 15 cm","2 fotografías A4","Sesión de fotos básica","Caja Trupan de presentación USB"],false,"1.300 Bs"]
       ]},
-      { id:'bodas-integrales', titulo:'Bodas integrales', categoria:'Bodas', imagen:'assets/portafolio-boda.jpg', flyer:'assets/bodas-integrales.webp', descripcion:'Boda civil, religiosa y recepción social en una misma jornada. Todos los paquetes incluyen la entrega del material 16 días después del evento.', paquetes:[
-        ['Esencial',['Cobertura fotográfica y filmación de boda civil, religiosa y recepción social','Video editado, musicalizado y retocado en FHD','100 fotografías editadas e impresas tamaño 10 × 15 cm','Sesión fotográfica de paseo','Álbum fotográfico personalizado','1 fotografía tamaño A4','Entrega de todo el material en USB','Entrega 16 días después del evento']],
-        ['Completo',['Cobertura fotográfica y filmación de boda civil, religiosa y recepción social','Video editado, musicalizado y retocado en FHD','150 fotografías editadas e impresas tamaño 10 × 15 cm','Sesión fotográfica de paseo','Álbum fotográfico personalizado','1 fotografía tamaño A4','Video de los mejores momentos','Entrega de todo el material en USB','Entrega 16 días después del evento']],
-        ['Súper Integral IAS',['Cobertura fotográfica y filmación de boda civil, religiosa y recepción social','Video completo editado, musicalizado y retocado en FHD','200 fotografías editadas e impresas tamaño 10 × 15 cm','Sesión fotográfica de paseo','Álbum fotográfico especial personalizado','2 fotografías tamaño A4','Video cinematográfico de los mejores momentos','Tomas aéreas con dron incluidas','Cabina fotográfica “La Vida es de Recuerdos”','Incluye 50 fotografías impresas de cabina','Fotografías adicionales de cabina se conversarán en el momento','Fotografías digitales de cabina mediante código QR','USB de 16 GB','Caja de presentación personalizada para USB','Entrega 16 días después del evento']],
-        ['Extras',['Tomas con dron: 200 Bs adicionales','Cabina adicional: 300 Bs más con 20 fotografías impresas']]
+      { id:'bodas-integrales', titulo:'Bodas integrales', categoria:'Bodas', imagen:'assets/portafolio-boda.jpg', descripcion:'Boda civil, religiosa y recepción social en una misma jornada. Todos los paquetes incluyen la entrega del material 16 días después del evento.', paquetes:[
+        ["Esencial",["Cobertura fotográfica y filmación de boda civil, religiosa y recepción social","Video editado, musicalizado y retocado en FHD","100 fotografías editadas e impresas tamaño 10 × 15 cm","Sesión fotográfica de paseo","Álbum fotográfico personalizado","1 fotografía tamaño A4","Entrega de todo el material en USB","Entrega 16 días después del evento"],false,"1.400 Bs"],
+        ["Completo",["Cobertura fotográfica y filmación de boda civil, religiosa y recepción social","Video editado, musicalizado y retocado en FHD","150 fotografías editadas e impresas tamaño 10 × 15 cm","Sesión fotográfica de paseo","Álbum fotográfico personalizado","1 fotografía tamaño A4","Video de los mejores momentos","Entrega de todo el material en USB","Entrega 16 días después del evento"],false,"1.900 Bs"],
+        ["Súper Integral IAS",["Cobertura fotográfica y filmación de boda civil, religiosa y recepción social","Video editado, musicalizado y retocado en FHD","200 fotografías editadas e impresas tamaño 10 × 15 cm","Sesión fotográfica de paseo","Álbum fotográfico especial personalizado","2 fotografías A4","Video cinematográfico de los mejores momentos","Tomas aéreas con dron incluidas","Cabina fotográfica “La Vida es de Recuerdos”","50 fotografías impresas de cabina","Fotografías adicionales de cabina se conversarán en el momento","Fotografías digitales de cabina mediante código QR","Entrega en USB de 16 GB","Caja de presentación personalizada para USB","Entrega 16 días después del evento"],false,"3.500 Bs"],
+        ["Extras",["Tomas con dron: 200 Bs adicionales","Cabina adicional: 300 Bs más con 20 fotografías impresas"]]
       ]},
-      { id:'sesion', titulo:'Sesión de fotos', categoria:'Producción', imagen:'assets/sesion-fotos.webp', descripcion:'Sesiones de interior o exterior con edición, cambios de vestuario y álbum online.', paquetes:[
-        ['Interior básico',['Sesión fotográfica','10 fotografías editadas','Entrega digital y USB']],
-        ['Interior intermedio',['Sesión fotográfica','20 fotografías editadas','Cambios de vestuario','Entrega digital y USB','Álbum online']],
-        ['Exterior básico',['Sesión fotográfica','10 fotografías editadas','1 locación','Entrega digital y USB']],
-        ['Exterior intermedio',['Sesión fotográfica','20 fotografías editadas','Cambios de vestuario','2 locaciones','Entrega digital y USB','Álbum online'],true]
+      { id:'sesion', titulo:'Sesión de fotos', categoria:'Producción', imagen:'assets/portafolio-quince-anos.jpg', descripcion:'Sesiones de interior o exterior con edición, cambios de vestuario y álbum online.', paquetes:[
+        ["Interior básico",["1 hora de sesión","10 fotografías editadas","Entrega digital y USB"],false,"120 Bs"],
+        ["Interior intermedio",["2 horas de sesión","20 fotografías editadas","Cambios de vestuario","Entrega digital y USB","Álbum online"],false,"250 Bs"],
+        ["Exterior básico",["1 hora de sesión","10 fotografías editadas","Entrega digital y USB","1 locación"],false,"150 Bs"],
+        ["Exterior intermedio",["2 horas de sesión","20 fotografías editadas","Cambios de vestuario","Entrega digital y USB","Álbum online","2 locaciones"],true,"300 Bs"]
       ]},
-      { id:'patronal', titulo:'Fiesta patronal', categoria:'Eventos', imagen:'assets/fiesta-patronal.webp', descripcion:'Misa, recorrido y celebración registrados en foto y video para toda la comunidad.', paquetes:[
-        ['Paquete 1',['Video FHD + digital']],
-        ['Paquete 2',['Video FHD + digital','40 fotografías + álbum digital']],
-        ['Paquete 3',['Video FHD + digital','60 fotografías + álbum digital','Video de mejores momentos','1 fotografía A4'],true],
-        ['Paquete 4',['Video FHD personalizado','80 fotografías + álbum personalizado y digital','Video de mejores momentos','2 fotografías A4','Cuaderno USB']],
-        ['Coberturas puntuales',['Misa','Recorrido']]
+      { id:'patronal', titulo:'Fiesta patronal', categoria:'Eventos', imagen:'assets/portafolio-tradicion.jpg', descripcion:'Misa, recorrido y celebración registrados en foto y video para toda la comunidad.', paquetes:[
+        ["Paquete 1",["Video FHD + digital"],false,"400 Bs"],
+        ["Paquete 2",["Video FHD + digital","30 fotografías","Álbum + digital"],false,"600 Bs"],
+        ["Paquete 3",["Video FHD + digital","40 fotografías","Álbum + digital","Video de los mejores momentos","1 fotografía A4"],true,"750 Bs"],
+        ["Paquete 4",["Video FHD + digital personalizado","80 fotografías","Álbum personalizado + digital","Video de los mejores momentos","2 fotografías A4","Cuaderno de presentación USB"],false,"900 Bs"],
+        ["Misa",["Cobertura de misa"],false,"150 Bs"],
+        ["Recorrido",["Cobertura del recorrido"],false,"150 Bs"]
       ]},
-      { id:'empresa', titulo:'Contenido empresarial', categoria:'Producción', imagen:'assets/empresa-redes.webp', descripcion:'Contenido mensual para mostrar tu marca con videos, flyers, fotos y tomas aéreas.', paquetes:[
-        ['Pack Empresa',['3 videos para TikTok','Flyer publicitario','Flyer animado','Tomas con dron']],
-        ['Pack Impulso',['5 videos para TikTok','3 flyers publicitarios','2 flyers animados','10 fotografías','Guion personalizado','Tomas con dron'],true]
+      { id:'empresa', titulo:'Contenido empresarial', categoria:'Producción', imagen:'assets/hero-ias.webp', descripcion:'Contenido mensual para mostrar tu marca con videos, flyers, fotos y tomas aéreas.', paquetes:[
+        ["Pack Empresa",["3 videos para TikTok","Flyer publicitario","Flyer animado","Tomas con dron"],false,"300 Bs"],
+        ["Pack Impulso",["5 videos para TikTok","3 flyers publicitarios","2 flyers animados","10 fotografías","Guion personalizado","Tomas con dron"],true,"400 Bs"]
       ]},
       { id:'dron', titulo:'Dron profesional', categoria:'Producción', imagen:'assets/dron-profesional.webp', descripcion:'Una nueva perspectiva en Ultra HD 4K para eventos, marcas y propiedades.', paquetes:[
         ['Vuelo profesional',['Tomas aéreas en Ultra HD 4K','Propiedades, terrenos y bienes raíces','Fotografías masivas de grupos','Panorámicas de salones y fachadas','Clips dinámicos para Reels y TikTok'],true]
